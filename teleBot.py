@@ -9,7 +9,7 @@ bot = telebot.TeleBot('6490104255:AAEFLWTwrlfgUUe3IxvzBydkjbrN4sVI4bg')
 NesoAcademy = "Neso Academy \nis a renowned YouTube channel recognized for its high-quality educational content.  Neso Academy provides comprehensive video lectures, tutorials, and explanations to help students grasp complex concepts with ease. The channel's founder and instructor, Vineet Khatri, has garnered praise for his clear teaching style and ability to break down intricate topics into understandable segments."
 
 
-Apnacollage = "Apna college\nThe Apna College YouTube channel is a popular online platform dedicated to providing educational content to students and learners across various subjects. With engaging videos and tutorials, the channel aims to simplify complex topics and make learning more accessible and enjoyable."
+ApnaCollage = "Apna college\nThe Apna College YouTube channel is a popular online platform dedicated to providing educational content to students and learners across various subjects. With engaging videos and tutorials, the channel aims to simplify complex topics and make learning more accessible and enjoyable."
 
 DineshVaryani = 'Dinesh Varyani \nmake free programming tutorials from beginner to advanced level. That includes Java for beginners, who is known for his excellent teachings. who is also a full stack developer and has 10 year of experience '
 
@@ -18,6 +18,14 @@ MoshHamedani = "Mosh Hamedani, \nbetter known online as Programming with Mosh, i
 CalebCurry = "Caleb Curry \nis a popular programming educator on YouTube. His tutorials are well-structured and beginner-friendly, making them a great resource for learning C." 
 
 CodeWithHarry = "Code With Harry \nis a widely recognized and popular YouTube channel  created by Harry Singh , the channel focuses on a diverse range of programming languages, web development, app development, and other coding-related topics. Harry's engaging teaching style, real-world examples, and step-by-step explanations have made CodeWithHarry a go-to resource for beginners and intermediate learners in the programming world."
+
+Campus_x = 'Campus X \nis a budding YouTube channel that offers  a detailed knowledge on programming and technology-related tutorials with good explanation. The channel focuses on a diverse range of programming languages, web development, app development, and other coding-related topics'
+
+TheCodingNinjas = 'The Coding Ninjas \nYouTube channel is a popular destination for programming enthusiasts and aspiring software developers. Known for its comprehensive coding tutorials and tech-related content.the Coding Ninjas channel has gained a substantial following, making it a valuable resource for those looking to sharpen their coding abilities and stay updated with the latest developments in the tech world. '
+
+Telusko = "Telusko started with the aim not just to teach but to educate to in Navin's words 'Aliens'. On Telusko platform we provide industry level quality content on technologies like Java, Blockchain, Python, JavaScript and their implementations."
+
+Kunal_Kushawaha = "He is a developer relations manager at Civo, CNCF Ambassador, TEDx speaker and a GitHub Star. He is the founder of WeMakeDevs and also started the official Cloud Native Student Community group joined by thousands of folks, focussed on getting more young people involved in the ecosystem."
 
     # Create a reply keyboard
 reply_keyboard = ReplyKeyboardMarkup(resize_keyboard=True,one_time_keyboard=True)
@@ -57,6 +65,29 @@ CLHindi = InlineKeyboardButton("Hindi", callback_data="CLHindi")
 CLEnglish = InlineKeyboardButton("English", callback_data="CLEnglish")
 ClangChoosekeyboard_inline.add(CLEnglish, CLHindi)
 
+# Inline keyboard for Languages in DSA
+LangDSAkeyboard_inline = InlineKeyboardMarkup()
+DSAPython = InlineKeyboardButton("Python", callback_data="DPython")
+DSAJava = InlineKeyboardButton("Java", callback_data="DJava")
+DSALanguage = InlineKeyboardButton("C Language", callback_data="DCLanguage")
+LangDSAkeyboard_inline.add(DSAPython, DSAJava,DSALanguage)
+
+# Inline keyboard for choosing DSA languages for python
+DSApHindi = InlineKeyboardButton("Hindi", callback_data="pythonHindi")
+DSApEnglish = InlineKeyboardButton("English", callback_data="pythonEnglish")
+pythonChooseKeyboard_inline = InlineKeyboardMarkup().add(DSApEnglish, DSApHindi)
+
+# Inline keyboard for choosing DSA languages for java
+DSAjHindi = InlineKeyboardButton("Hindi", callback_data="javaDHindi")
+DSAjEnglish = InlineKeyboardButton("English", callback_data="javaDEnglish")
+javaDSAChooseKeyboard_inline = InlineKeyboardMarkup().add(DSAjHindi, DSAjEnglish)
+
+# Inline keyboard for choosing DSA languages for c
+DSAcHindi = InlineKeyboardButton("Hindi", callback_data="CHindi")
+DSAcEnglish = InlineKeyboardButton("English", callback_data="CEnglish")
+CChooseKeyboard_inline = InlineKeyboardMarkup().add(DSAcEnglish,DSAcHindi)
+
+
 # back button
 menuChooseKeyboard_inline = InlineKeyboardMarkup()
 menu = InlineKeyboardButton("Menu🔙", callback_data="menu")
@@ -77,6 +108,10 @@ def echo_all(message):
     remove_keyboard = ReplyKeyboardRemove()
     if message.text == 'Programming-Languages':
         bot.reply_to(message, "A programming language is a way for programmers (developers) to communicate with computers.\n Choose which you want to start with",reply_markup=language_markup)
+    elif message.text == 'DSA':
+        bot.reply_to(message,"Road map for DSA")
+        bot.send_message(message.chat.id,"https://i.ibb.co/ZdLrF3S/Whats-App-Image-2023-08-19-at-11-24-19-PM.jpg")
+        bot.send_message(message.chat.id,"Data structure and Algorithm (DSA) is applied in all disciplines of software development.\n DSA is the building block of the software development process.\nChoose which you want to start with", reply_markup=LangDSAkeyboard_inline)
     elif message.text == 'Goodbye':
         bot.reply_to(message, "Goodbye!")
         
@@ -115,7 +150,7 @@ def callback_handler(call):
     elif call.data == 'javaHindi':
         bot.answer_callback_query(call.id, "Java in English is Selected",show_alert=False)
         bot.send_message(call.message.chat.id, "from, Apna college")
-        bot.send_message(call.message.chat.id, Apnacollage)
+        bot.send_message(call.message.chat.id, ApnaCollage)
         bot.send_message(call.message.chat.id, "https://youtu.be/yRpLlJmRo2w")
         bot.send_message(call.message.chat.id, "Check below for playlist 👇")
         bot.send_message(call.message.chat.id, "https://youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop",reply_markup=menuChooseKeyboard_inline)
@@ -135,7 +170,55 @@ def callback_handler(call):
         bot.send_message(call.message.chat.id, "https://youtu.be/7Dh73z3icd8")
         bot.send_message(call.message.chat.id, "Check below for playlist 👇")
         bot.send_message(call.message.chat.id, "https://youtube.com/playlist?list=PLu0W_9lII9aiXlHcLx-mDH1Qul38wD3aR",reply_markup=menuChooseKeyboard_inline)
-        
-
+    elif call.data == "DPython": #for DSA in python
+        bot.answer_callback_query(call.id, "DSA in Python",show_alert=False)
+        bot.send_message(call.message.chat.id,"Choose Which Language you familiar with",reply_markup=pythonChooseKeyboard_inline)
+    elif call.data == "DJava": #for DSA in java
+        bot.answer_callback_query(call.id, "DSA in Java",show_alert=False)
+        bot.send_message(call.message.chat.id,"Choose Which Language you familiar with",reply_markup=javaDSAChooseKeyboard_inline)
+    elif call.data == "DCLanguage": #for DSA in C language
+        bot.answer_callback_query(call.id, "DSA in C",show_alert=False)
+        bot.send_message(call.message.chat.id,"Choose Which Language you familiar with",reply_markup=CChooseKeyboard_inline)
+    elif call.data == "pythonHindi": #for DSA in python language in hindi
+        bot.answer_callback_query(call.id, "DSA on Python in Hindi",show_alert=False)
+        bot.send_message(call.message.chat.id, "from, Campus X")
+        bot.send_message(call.message.chat.id, Campus_x)
+        bot.send_message(call.message.chat.id, "https://youtu.be/f9Aje_cN_CY",reply_markup=menuChooseKeyboard_inline)
+    elif call.data == "pythonEnglish": #for DSA in python language in english
+        bot.answer_callback_query(call.id, "DSA on python in English",show_alert=False)
+        bot.send_message(call.message.chat.id, "from, The Coding Ninjas")
+        bot.send_message(call.message.chat.id, TheCodingNinjas)
+        bot.send_message(call.message.chat.id, "https://youtu.be/UljGkm2ikdY")
+        bot.send_message(call.message.chat.id, "Check below for playlist 👇")
+        bot.send_message(call.message.chat.id, "https://youtube.com/playlist?list=PLrk5tgtnMN6TYBW0-U4YhIRyYEVpqVEnJ",reply_markup=menuChooseKeyboard_inline)
+    elif call.data == "javaDHindi": #for DSA in java language in hindi
+        bot.answer_callback_query(call.id, "DSA on Java in Hindi",show_alert=False)
+        bot.send_message(call.message.chat.id, "from, kunal kushwaha")
+        bot.send_message(call.message.chat.id, Kunal_Kushawaha)
+        bot.send_message(call.message.chat.id, "https://youtu.be/rZ41y93P2Qo?si=4rSWDoDrXZKd9k8j")
+        bot.send_message(call.message.chat.id, "Check below for playlist 👇")
+        bot.send_message(call.message.chat.id, "https://youtube.com/playlist?list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ&si=ByrjoSlkQSZUq_en",reply_markup=menuChooseKeyboard_inline)
+    elif call.data == "javaDEnglish": #for DSA in java language in english
+        bot.answer_callback_query(call.id, "DSA on Java in English",show_alert=False)
+        bot.send_message(call.message.chat.id, "from, Telusko")
+        bot.send_message(call.message.chat.id, Telusko)
+        bot.send_message(call.message.chat.id, "https://youtu.be/xWLxhF3b5P8?si=CoucqQWGTKTjl6L3",reply_markup=menuChooseKeyboard_inline)
+    elif call.data == "CEnglish": #for DSA in C language in english
+        bot.answer_callback_query(call.id, "DSA on C in English",show_alert=False)
+        bot.send_message(call.message.chat.id, "from, Neso Academy")
+        bot.send_message(call.message.chat.id, NesoAcademy)
+        bot.send_message(call.message.chat.id, "https://youtu.be/4OGMB4Fhh50")
+        bot.send_message(call.message.chat.id, "Check below for playlist 👇")
+        bot.send_message(call.message.chat.id, "https://youtube.com/playlist?list=PLBlnK6fEyqRhX6r2uhhlubuF5QextdCSM",reply_markup=menuChooseKeyboard_inline)
+    elif call.data == "CHindi": #for DSA in C language in hindi
+        bot.answer_callback_query(call.id, "DSA on C in Hindi",show_alert=False)
+        bot.send_message(call.message.chat.id, "from, CodeWithHarry")
+        bot.send_message(call.message.chat.id, CodeWithHarry)
+        bot.send_message(call.message.chat.id, "https://youtu.be/5_5oE5lgrhw")
+        bot.send_message(call.message.chat.id, "Check below for playlist 👇")
+        bot.send_message(call.message.chat.id, "https://youtube.com/playlist?list=PLu0W_9lII9ahIappRPN0MCAgtOu3lQjQi",reply_markup=menuChooseKeyboard_inline)
+    elif call.data == "about":
+        bot.answer_callback_query(call.id, "About",show_alert=False)
+        bot.send_message("○ Team: @Babith_dev, @Pallavigowdaaa, @priyanka142004\n○ Language: Python3.11\n○ Library: Telebot 4.12.0\n○ Institution: East Point College of Engineering",reply_markup=menuChooseKeyboard_inline)
 # Start the bot
 bot.polling()
