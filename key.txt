@@ -1,7 +1,0 @@
-6490104255:AAEFLWTwrlfgUUe3IxvzBydkjbrN4sVI4bg
-id: 29027018
-hash: be15adab4c0f92eb01a082db686accee
-title: MyTelegramBot
-api_id = '29027018'
-api_hash = 'be15adab4c0f92eb01a082db686accee'
-bot_token = '6490104255:AAEFLWTwrlfgUUe3IxvzBydkjbrN4sVI4bg'
